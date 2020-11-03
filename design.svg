@@ -1,0 +1,360 @@
+<svg id="mermaid-1551888045277" width="100%" xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 596.9765625 553"><style>
+
+
+#mermaid-1551888045277 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1551888045277 .node rect,
+#mermaid-1551888045277 .node circle,
+#mermaid-1551888045277 .node ellipse,
+#mermaid-1551888045277 .node polygon {
+  fill: #eee;
+  stroke: #999;
+  stroke-width: 1px; }
+
+#mermaid-1551888045277 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1551888045277 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1551888045277 .edgePath .path {
+  stroke: #666;
+  stroke-width: 1.5px; }
+
+#mermaid-1551888045277 .edgeLabel {
+  background-color: white; }
+
+#mermaid-1551888045277 .cluster rect {
+  fill: #eaf2fb !important;
+  stroke: #26a !important;
+  stroke-width: 1px !important; }
+
+#mermaid-1551888045277 .cluster text {
+  fill: #333; }
+
+#mermaid-1551888045277 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #eaf2fb;
+  border: 1px solid #26a;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1551888045277 .actor {
+  stroke: #999;
+  fill: #eee; }
+
+#mermaid-1551888045277 text.actor {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1551888045277 .actor-line {
+  stroke: #666; }
+
+#mermaid-1551888045277 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1551888045277 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1551888045277 #arrowhead {
+  fill: #333; }
+
+#mermaid-1551888045277 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1551888045277 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1551888045277 .labelBox {
+  stroke: #999;
+  fill: #eee; }
+
+#mermaid-1551888045277 .labelText {
+  fill: white;
+  stroke: none; }
+
+#mermaid-1551888045277 .loopText {
+  fill: white;
+  stroke: none; }
+
+#mermaid-1551888045277 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #999; }
+
+#mermaid-1551888045277 .note {
+  stroke: #777700;
+  fill: #ffa; }
+
+#mermaid-1551888045277 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+#mermaid-1551888045277 .activation0 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+#mermaid-1551888045277 .activation1 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+#mermaid-1551888045277 .activation2 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+
+#mermaid-1551888045277 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1551888045277 .section0 {
+  fill: #80b3e6; }
+
+#mermaid-1551888045277 .section2 {
+  fill: #80b3e6; }
+
+#mermaid-1551888045277 .section1,
+#mermaid-1551888045277 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1551888045277 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1551888045277 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1551888045277 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1551888045277 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1551888045277 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1551888045277 .grid .tick {
+  stroke: #e6e6e6;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1551888045277 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1551888045277 .today {
+  fill: none;
+  stroke: #d42;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1551888045277 .task {
+  stroke-width: 2; }
+
+#mermaid-1551888045277 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1551888045277 .taskTextOutsideRight {
+  fill: #333;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1551888045277 .taskTextOutsideLeft {
+  fill: #333;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1551888045277 .taskText0,
+#mermaid-1551888045277 .taskText1,
+#mermaid-1551888045277 .taskText2,
+#mermaid-1551888045277 .taskText3 {
+  fill: white; }
+
+#mermaid-1551888045277 .task0,
+#mermaid-1551888045277 .task1,
+#mermaid-1551888045277 .task2,
+#mermaid-1551888045277 .task3 {
+  fill: #26a;
+  stroke: #1a4d80; }
+
+#mermaid-1551888045277 .taskTextOutside0,
+#mermaid-1551888045277 .taskTextOutside2 {
+  fill: #333; }
+
+#mermaid-1551888045277 .taskTextOutside1,
+#mermaid-1551888045277 .taskTextOutside3 {
+  fill: #333; }
+
+
+#mermaid-1551888045277 .active0,
+#mermaid-1551888045277 .active1,
+#mermaid-1551888045277 .active2,
+#mermaid-1551888045277 .active3 {
+  fill: #eee;
+  stroke: #1a4d80; }
+
+#mermaid-1551888045277 .activeText0,
+#mermaid-1551888045277 .activeText1,
+#mermaid-1551888045277 .activeText2,
+#mermaid-1551888045277 .activeText3 {
+  fill: #333 !important; }
+
+
+#mermaid-1551888045277 .done0,
+#mermaid-1551888045277 .done1,
+#mermaid-1551888045277 .done2,
+#mermaid-1551888045277 .done3 {
+  stroke: #666;
+  fill: #bbb;
+  stroke-width: 2; }
+
+#mermaid-1551888045277 .doneText0,
+#mermaid-1551888045277 .doneText1,
+#mermaid-1551888045277 .doneText2,
+#mermaid-1551888045277 .doneText3 {
+  fill: #333 !important; }
+
+
+#mermaid-1551888045277 .crit0,
+#mermaid-1551888045277 .crit1,
+#mermaid-1551888045277 .crit2,
+#mermaid-1551888045277 .crit3 {
+  stroke: #b1361b;
+  fill: #d42;
+  stroke-width: 2; }
+
+#mermaid-1551888045277 .activeCrit0,
+#mermaid-1551888045277 .activeCrit1,
+#mermaid-1551888045277 .activeCrit2,
+#mermaid-1551888045277 .activeCrit3 {
+  stroke: #b1361b;
+  fill: #eee;
+  stroke-width: 2; }
+
+#mermaid-1551888045277 .doneCrit0,
+#mermaid-1551888045277 .doneCrit1,
+#mermaid-1551888045277 .doneCrit2,
+#mermaid-1551888045277 .doneCrit3 {
+  stroke: #b1361b;
+  fill: #bbb;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1551888045277 .doneCritText0,
+#mermaid-1551888045277 .doneCritText1,
+#mermaid-1551888045277 .doneCritText2,
+#mermaid-1551888045277 .doneCritText3 {
+  fill: #333 !important; }
+
+#mermaid-1551888045277 .activeCritText0,
+#mermaid-1551888045277 .activeCritText1,
+#mermaid-1551888045277 .activeCritText2,
+#mermaid-1551888045277 .activeCritText3 {
+  fill: #333 !important; }
+
+#mermaid-1551888045277 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #333; }
+
+#mermaid-1551888045277 g.classGroup text {
+  fill: #999;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1551888045277 g.classGroup rect {
+  fill: #eee;
+  stroke: #999; }
+
+#mermaid-1551888045277 g.classGroup line {
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #eee;
+  opacity: 0.5; }
+
+#mermaid-1551888045277 .classLabel .label {
+  fill: #999;
+  font-size: 10px; }
+
+#mermaid-1551888045277 .relation {
+  stroke: #999;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1551888045277 #compositionStart {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #compositionEnd {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #aggregationStart {
+  fill: #eee;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #aggregationEnd {
+  fill: #eee;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #dependencyStart {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #dependencyEnd {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #extensionStart {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 #extensionEnd {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1551888045277 .commit-id,
+#mermaid-1551888045277 .commit-msg,
+#mermaid-1551888045277 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+</style><style>#mermaid-1551888045277 {
+    color: rgba(0, 0, 0, 0.65);
+    font: ;
+  }</style><g></g><defs><marker id="extensionStart" class="extension" refX="0" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 1,7 L18,13 V 1 Z"></path></marker></defs><defs><marker id="extensionEnd" refX="19" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 1,1 V 13 L18,7 Z"></path></marker></defs><defs><marker id="compositionStart" class="extension" refX="0" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="compositionEnd" refX="19" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="aggregationStart" class="extension" refX="0" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="aggregationEnd" refX="19" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="dependencyStart" class="extension" refX="0" refY="7" markerWidth="190" markerHeight="240" orient="auto"><path d="M 5,7 L9,13 L1,7 L9,1 Z"></path></marker></defs><defs><marker id="dependencyEnd" refX="19" refY="7" markerWidth="20" markerHeight="28" orient="auto"><path d="M 18,7 L9,13 L14,7 L9,1 Z"></path></marker></defs><g id="classId0" class="classGroup" transform="translate(127.21875,0 )"><rect x="0" y="0" width="100.671875" height="68"></rect><text x="5" y="15">WorldManager</text><line x1="0" y1="21" y2="21" x2="100.671875"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">int defcon</tspan><tspan x="5" dy="10">Room[] roomqueue</tspan></text><line x1="0" y1="47" y2="47" x2="100.671875"></line><text x="5" y="62" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId1" class="classGroup" transform="translate(0,128.5 )"><rect x="0" y="0" width="88.5625" height="47"></rect><text x="5" y="15">MemoryManager</text><line x1="0" y1="21" y2="21" x2="88.5625"></line><text x="5" y="31" fill="white" class="classText"></text><line x1="0" y1="26" y2="26" x2="88.5625"></line><text x="5" y="41" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId2" class="classGroup" transform="translate(138.5625,118 )"><rect x="0" y="0" width="77.984375" height="68"></rect><text x="5" y="15">RoomManager</text><line x1="0" y1="21" y2="21" x2="77.984375"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Room room</tspan><tspan x="5" dy="10">int level</tspan></text><line x1="0" y1="47" y2="47" x2="77.984375"></line><text x="5" y="62" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId3" class="classGroup" transform="translate(448.96875,123 )"><rect x="0" y="0" width="106.796875" height="58"></rect><text x="5" y="15">CreepManager</text><line x1="0" y1="21" y2="21" x2="106.796875"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Map creepAllocation</tspan></text><line x1="0" y1="37" y2="37" x2="106.796875"></line><text x="5" y="52" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId4" class="classGroup" transform="translate(129.8671875,255 )"><rect x="0" y="0" width="95.375" height="30"></rect><text x="5" y="15">StructureManager</text><line x1="0" y1="21" y2="21" x2="95.375"></line><text x="5" y="31" fill="white" class="classText"></text><line x1="0" y1="26" y2="26" x2="95.375"></line><text x="5" y="41" fill="white" class="classText"></text></g><g id="classId5" class="classGroup" transform="translate(281.01171875,236 )"><rect x="0" y="0" width="112.234375" height="68"></rect><text x="5" y="15">CreepJob</text><line x1="0" y1="21" y2="21" x2="112.234375"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">const CreepType type</tspan><tspan x="5" dy="10">Creep creep</tspan></text><line x1="0" y1="47" y2="47" x2="112.234375"></line><text x="5" y="62" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId6" class="classGroup" transform="translate(447.7578125,236 )"><rect x="0" y="0" width="129.21875" height="68"></rect><text x="5" y="15">Spawner</text><line x1="0" y1="21" y2="21" x2="129.21875"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Map creepMinimum</tspan><tspan x="5" dy="10">CreepType[] spawnQueue</tspan></text><line x1="0" y1="47" y2="47" x2="129.21875"></line><text x="5" y="62" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId7" class="classGroup" transform="translate(270.77734375,131.5 )"><rect x="0" y="0" width="112.703125" height="41"></rect><text x="5" y="15">Creep</text><line x1="0" y1="21" y2="21" x2="112.703125"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Provided by the game</tspan></text><line x1="0" y1="37" y2="37" x2="112.703125"></line><text x="5" y="52" fill="white" class="classText"></text></g><g id="classId8" class="classGroup" transform="translate(224.61328125,364 )"><rect x="0" y="0" width="77.65625" height="58"></rect><text x="5" y="15">Harvester</text><line x1="0" y1="21" y2="21" x2="77.65625"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Source source</tspan></text><line x1="0" y1="37" y2="37" x2="77.65625"></line><text x="5" y="52" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId9" class="classGroup" transform="translate(352.26953125,354 )"><rect x="0" y="0" width="117.09375" height="78"></rect><text x="5" y="15">Hauler</text><line x1="0" y1="21" y2="21" x2="117.09375"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Job currentJob</tspan><tspan x="5" dy="10">bool lowResourceMode</tspan></text><line x1="0" y1="47" y2="47" x2="117.09375"></line><text x="5" y="62" fill="white" class="classText"><tspan x="5">run()</tspan><tspan x="5" dy="10">findJob()</tspan></text></g><g id="classId10" class="classGroup" transform="translate(315.30859375,484 )"><rect x="0" y="0" width="57.234375" height="47"></rect><text x="5" y="15">Upgrader</text><line x1="0" y1="21" y2="21" x2="57.234375"></line><text x="5" y="31" fill="white" class="classText"></text><line x1="0" y1="26" y2="26" x2="57.234375"></line><text x="5" y="41" fill="white" class="classText"><tspan x="5">run()</tspan></text></g><g id="classId11" class="classGroup" transform="translate(422.54296875,482 )"><rect x="0" y="0" width="110.328125" height="51"></rect><text x="5" y="15">AdjacentRoomHauler</text><line x1="0" y1="21" y2="21" x2="110.328125"></line><text x="5" y="31" fill="white" class="classText"><tspan x="5">Room home</tspan><tspan x="5" dy="10">Room target</tspan></text><line x1="0" y1="47" y2="47" x2="110.328125"></line><text x="5" y="62" fill="white" class="classText"></text></g><path d="M127.21875,56.28366258280087L113.39583333333333,62.403052152334055C99.57291666666667,68.52244172186725,71.92708333333333,80.76122086093362,58.104166666666664,92.79727709713347C44.28125,104.83333333333333,44.28125,116.66666666666667,44.28125,122.58333333333333L44.28125,128.5" id="edge0" class="relation" marker-start="url(#dependencyStart)"></path><path d="M177.5546875,68L177.5546875,72.16666666666667C177.5546875,76.33333333333333,177.5546875,84.66666666666667,177.5546875,93C177.5546875,101.33333333333333,177.5546875,109.66666666666667,177.5546875,113.83333333333333L177.5546875,118" id="edge1" class="relation" marker-start="url(#dependencyStart)"></path><path d="M227.890625,43.143183567442755L273.63671875,51.452652972868954C319.3828125,59.76212237829517,410.875,76.38106118914759,456.62109375,89.69053059457379C502.3671875,103,502.3671875,113,502.3671875,118L502.3671875,123" id="edge2" class="relation" marker-start="url(#dependencyStart)"></path><path d="M177.5546875,186L177.5546875,190.16666666666666C177.5546875,194.33333333333334,177.5546875,202.66666666666666,177.5546875,214.16666666666666C177.5546875,225.66666666666666,177.5546875,240.33333333333334,177.5546875,247.66666666666666L177.5546875,255" id="edge3" class="relation" marker-start="url(#dependencyStart)"></path><path d="M460.40896451271186,181L453.1747881355932,186C445.94061175847463,191,431.4722590042373,201,418.5971927966102,210.16666666666666C405.72212658898303,219.33333333333334,394.4403469279661,227.66666666666666,388.7994570974576,231.83333333333334L383.15856726694915,236" id="edge4" class="relation" marker-start="url(#dependencyStart)"></path><path d="M507.28244173728814,181L508.1298993644068,186C508.97735699152537,191,510.6722722457627,201,511.5197298728813,210.16666666666666C512.3671875,219.33333333333334,512.3671875,227.66666666666666,512.3671875,231.83333333333334L512.3671875,236" id="edge5" class="relation" marker-start="url(#dependencyStart)"></path><path d="M327.12890625,172.5L327.12890625,178.91666666666666C327.12890625,185.33333333333334,327.12890625,198.16666666666666,327.83512093926555,208.75C328.54133562853104,219.33333333333334,329.95376500706215,227.66666666666666,330.6599796963277,231.83333333333334L331.36619438559325,236" id="edge6" class="relation" marker-start="url(#dependencyStart)"></path><path d="M294.66492319915255,304L289.4610037076271,308.1666666666667C284.2570842161017,312.3333333333333,273.84924523305085,320.6666666666667,268.6453257415254,330.6666666666667C263.44140625,340.6666666666667,263.44140625,352.3333333333333,263.44140625,358.1666666666667L263.44140625,364" id="edge7" class="relation" marker-start="url(#extensionStart)"></path><path d="M379.59288930084745,304L384.79680879237293,308.1666666666667C390.0007282838983,312.3333333333333,400.40856726694915,320.6666666666667,405.61248675847463,329C410.81640625,337.3333333333333,410.81640625,345.6666666666667,410.81640625,349.8333333333333L410.81640625,354" id="edge8" class="relation" marker-start="url(#extensionStart)"></path><path d="M370.054931640625,432L365.7000732421875,436.1666666666667C361.34521484375,440.3333333333333,352.635498046875,448.6666666666667,348.2806396484375,457.3333333333333C343.92578125,466,343.92578125,475,343.92578125,479.5L343.92578125,484" id="edge9" class="relation" marker-start="url(#extensionStart)"></path><path d="M451.577880859375,432L455.9327392578125,436.1666666666667C460.28759765625,440.3333333333333,468.997314453125,448.6666666666667,473.3521728515625,457C477.70703125,465.3333333333333,477.70703125,473.6666666666667,477.70703125,477.8333333333333L477.70703125,482" id="edge10" class="relation" marker-start="url(#extensionStart)"></path></svg>
