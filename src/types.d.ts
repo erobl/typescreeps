@@ -2,9 +2,11 @@
 
 // memory extension samples
 interface CreepMemory {
+  source_room: string;
   role: string;
   job?: string;
   working?: boolean;
+  dest_room?: string;
 }
 
 interface RoomMemory {
@@ -18,6 +20,7 @@ interface SpawnMemory {
   spawnQueue: string[];
   minimumNumber: { [id: string] : number };
   numberOf: { [id: string]: number };
+  budget: number;
 }
 
 interface Memory {
@@ -25,6 +28,7 @@ interface Memory {
   log: any;
   defcon: number;
   roomqueue: number[];
+  stats: { [id: string]: any };
 }
 
 // `global` extension samples

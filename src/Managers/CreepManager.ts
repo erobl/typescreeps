@@ -4,6 +4,8 @@ import { Hauler } from "Creeps/Hauler";
 import { Handyworker } from "Creeps/Handyworker";
 import { Upgrader } from "Creeps/Upgrader";
 import { LowEnergyHarvester } from "Creeps/LowEnergyHarvester";
+import { Claimer } from "Creeps/Claimer";
+import { LongRangeBuilder } from "Creeps/LongRangeBuilder";
 export class CreepManager {
     creeps : CreepJob[];
     handyworkers : Handyworker[];
@@ -25,6 +27,12 @@ export class CreepManager {
             } else if(creep.memory.role == "lowenergyharvester") {
                 var leharvester = new LowEnergyHarvester(creep);
                 this.creeps.push(leharvester);
+            } else if(creep.memory.role == "claimer") {
+                var claimer = new Claimer(creep)
+                this.creeps.push(claimer)
+            } else if(creep.memory.role == "longrangebuilder") {
+                var lrb = new LongRangeBuilder(creep);
+                this.creeps.push(lrb);
             }
 
         }
@@ -35,36 +43,44 @@ export class CreepManager {
             creep.run();
         }
 
-        var counter : { [id: string] : number } = {
-            "energyCarrier": 0,
-            "repairer": 0,
-            "builder": 0
-        };
+        var counter : { [room: string]: { [id: string] : number } } = {};
+
+        for (var room in Game.rooms) {
+            counter[room] = 
+            {
+                "energyCarrier": 0,
+                "repairer": 0,
+                "builder": 0
+            };
+        }
 
         var unassigned = [];
         for(var handyworker of this.handyworkers) {
             if(handyworker.creep.memory.job != undefined) {
-                counter[handyworker.creep.memory.job]++;
+                counter[handyworker.creep.memory.source_room][handyworker.creep.memory.job]++;
             } else {
                 unassigned.push(handyworker);
             }
         }
 
         for(var u in unassigned) {
-            var job = this.assignJob(unassigned[u], counter);
-            counter[job]++;
+            var creeproom = unassigned[u].creep.memory.source_room;
+            var job = this.assignJob(unassigned[u], counter[creeproom]);
+            counter[creeproom][job]++;
         }
     }
 
     assignJob(creep : Handyworker, counter : {[id: string]: number}) {
+        var least_common = "energyCarrier";
+        var number = 10000;
         for(var key in counter) {
-            if(counter[key] == 0) {
-                creep.creep.memory.job = key;
-                return key;
+            if(counter[key] < number) {
+                least_common = key
+                number = counter[key]
             }
         }
         
-        creep.creep.memory.job = "energyCarrier";
-        return "energyCarrier";
+        creep.creep.memory.job = least_common;
+        return least_common;
     }
 }

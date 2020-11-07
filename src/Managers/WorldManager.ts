@@ -23,6 +23,12 @@ export class WorldManager {
 
         var cm = new CreepManager();
         cm.run();
+
+        if(Game.cpu.bucket > 9000) {
+            Game.cpu.generatePixel()
+        }
+
+        this.manageMemory()
     }
 
     manageMemory() {
@@ -30,7 +36,11 @@ export class WorldManager {
             if (!(name in Game.creeps)) {
                 delete Memory.creeps[name];
                 for(var room in Game.rooms) {
-                    delete Game.rooms[room].memory.creepAllocation[name];
+                    try {
+                        delete Game.rooms[room].memory.creepAllocation[name];
+                    } catch {
+                        // nothing
+                    }
                 }
             }
         }
@@ -41,6 +51,26 @@ export class WorldManager {
 
         if(Memory.roomqueue == undefined) {
             Memory.roomqueue = [];
+        }
+
+        if(Memory.stats == undefined) {
+            Memory.stats = {};
+        }
+
+        if(Memory.stats["progress"] == undefined) {
+            Memory.stats["progress"] = {};
+        }
+
+        if(Memory.stats["progressPercentage"] == undefined) {
+            Memory.stats["progressPercentage"] = {};
+        }
+
+        if(Memory.stats["creepRoles"] == undefined) {
+            Memory.stats["creepRoles"] = {};
+        }
+
+        if(Memory.stats["minCreepRoles"] == undefined) {
+            Memory.stats["minCreepRoles"] = {};
         }
     }
     

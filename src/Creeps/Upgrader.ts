@@ -20,8 +20,9 @@ export class Upgrader extends Hauler {
         this.findTarget();
 
         if(this.creep.memory.working) {
-            if(this.creep.room.controller != undefined && this.creep.upgradeController(this.creep.room.controller) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(this.creep.room.controller);
+            var room = Game.rooms[this.creep.memory.source_room];
+            if(room.controller != undefined && this.creep.upgradeController(room.controller) == ERR_NOT_IN_RANGE) {
+                this.creep.moveTo(room.controller);
             }
         } else {
             if(this.creep.withdraw(<StructureContainer> this.target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {

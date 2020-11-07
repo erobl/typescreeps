@@ -12,9 +12,15 @@ export class SpawnManager {
             this.spawn.memory.minimumNumber = {
                 "lowenergyharvester": 4,
                 "harvester" : 0,
-                "handyworker": 2,
-                "upgrader": 1
+                "handyworker": 0,
+                "upgrader": 0,
+                "claimer": 0,
+                "longrangebuilder": 0
             }; 
+        }
+
+        if(this.spawn.memory.budget == undefined) {
+            this.spawn.memory.budget = 600;
         }
 
         if (this.spawn.room.memory.creepAllocation == undefined) {
@@ -24,11 +30,13 @@ export class SpawnManager {
 
     run() {
         this.updateQueue()
-        
+
+
         if(this.spawn.memory.spawnQueue.length > 0) {
             var role = this.peekQueue();
             var name = role + Game.time.toString();
-            var body = this.getBody(role, 300)
+            var energy = this.getRoleBudget(role, this.spawn.memory.budget)
+            var body = this.getBody(role, energy)
             var memory = this.getMemory(role)
             var result = this.spawn.spawnCreep(body, name, {memory: memory});
 
@@ -38,10 +46,25 @@ export class SpawnManager {
                 this.postCreepCreation(role, name);
             }
 
-            for(var role in this.spawn.memory.minimumNumber) {
-                console.log(role + ": " + this.spawn.memory.numberOf[role] + "/" + this.spawn.memory.minimumNumber[role]);
-            }
         }
+
+        this.updateStats()
+    }
+
+    updateStats() {
+        Memory.stats.creepRoles[this.spawn.name] = this.spawn.memory.numberOf;
+        Memory.stats.minCreepRoles[this.spawn.name] = this.spawn.memory.minimumNumber;
+    }
+
+    getRoleBudget(role: string, defaultEnergy: number) {
+        if(role == "claimer") {
+            return 1000
+        }
+        if(role == "longrangebuilder") {
+            return 1000
+        }
+
+        return defaultEnergy
     }
 
     getBody(role : string, energy : number) : BodyPartConstant[] {
@@ -53,7 +76,7 @@ export class SpawnManager {
                 body.push(WORK)
             }
             return body;
-        } else if(role == "handyworker" || role == "upgrader") {
+        } else if(role == "handyworker" || role == "upgrader" || role == "longrangebuilder") {
             // as many work, move, carry parts as you can with the energy
             var currentEnergy = energy;
             var body : BodyPartConstant[] = [];
@@ -73,22 +96,47 @@ export class SpawnManager {
                 }
             }
             return body;
-        } 
+        } else if(role == "claimer") {
+            var currentEnergy = energy;
+            var body : BodyPartConstant[] = [CLAIM];
+            
+            currentEnergy -= BODYPART_COST[CLAIM];
 
+            while(currentEnergy >= 50) {
+                if(currentEnergy >= 50) {
+                    body.push(MOVE);
+                    currentEnergy -= 50;
+                }
+            }
+
+            return body
+        } 
         // else we return a generic body worth 300
         return [WORK, CARRY, MOVE, MOVE]
     }
 
     getMemory(role : string) : CreepMemory {
         if(role == "harvester") { 
-            return { role: role }
+            return { role: role, source_room: this.spawn.room.name }
         } else if (role == "handyworker" || role == "upgrader") {
-            return { role: role, working: false, job: undefined }
-        } else if (role = "lowenergyharvester") {
-            return { role: role, working: false }
+            return { role: role, working: false, job: undefined, source_room: this.spawn.room.name }
+        } else if (role == "lowenergyharvester") {
+            return { role: role, working: false, source_room: this.spawn.room.name }
+        } else if (role == "claimer") {
+            var dest_room = undefined;
+            if(Game.flags.claim.room != undefined) {
+                dest_room = Game.flags.claim.pos.roomName;
+            }
+            return { role: role, working: false, source_room: this.spawn.room.name, dest_room: dest_room }
+        } else if (role == "longrangebuilder") {
+            var dest_room = undefined;
+            if(Game.flags.claim.room != undefined) {
+                dest_room = Game.flags.build.pos.roomName;
+            }
+            return { role: role, working: false, source_room: this.spawn.room.name, dest_room: dest_room }
         }
 
-        else return {role: role}
+        else return {role: role, source_room: this.spawn.room.name}
     }
 
     postCreepCreation(role: string, name: string) {
@@ -126,7 +174,7 @@ export class SpawnManager {
         var needsUpdate = false;
         this.spawn.memory.numberOf = {};
         for(var role in this.spawn.memory.minimumNumber) {
-            var current = _.sum(Game.creeps, (c) => c.memory.role == role ? 1 : 0) + 
+            var current = _.sum(Game.creeps, (c) => (c.memory.role == role && c.memory.source_room == this.spawn.room.name) ? 1 : 0) + 
                       _.sum(this.spawn.memory.spawnQueue, (r) => r == role ? 1 : 0);
             this.spawn.memory.numberOf[role] = current;
             for(var i = 0; i < this.spawn.memory.minimumNumber[role] - current; i++) {
@@ -151,6 +199,7 @@ export class SpawnManager {
         creepPriority.set("harvester", 1);
         creepPriority.set("handyworker", 2);
         creepPriority.set("upgrader", 3);
+        creepPriority.set("claimer", 4);
 
         return this.spawn.memory.spawnQueue.sort(function(a,b) {
             var aval = creepPriority.get(a);
