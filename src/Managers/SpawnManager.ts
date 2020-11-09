@@ -130,7 +130,7 @@ export class SpawnManager {
             return { role: role, working: false, source_room: this.spawn.room.name, dest_room: dest_room }
         } else if (role == "longrangebuilder") {
             var dest_room = undefined;
-            if(Game.flags.claim.room != undefined) {
+            if(Game.flags.build != undefined && Game.flags.build.room != undefined) {
                 dest_room = Game.flags.build.pos.roomName;
             }
             return { role: role, working: false, source_room: this.spawn.room.name, dest_room: dest_room }
@@ -161,7 +161,7 @@ export class SpawnManager {
             }
             
             if(!nameAssigned) {
-                console.log("Something went wrong!");
+                console.log("Something went wrong! Couldn't assign " + name + " in room " +this.spawn.room.name);
                 if(containers.length == 0) {
                     console.log("No containers found in room " + this.spawn.room.name +", starting low energy mode...")
                     this.spawn.room.memory.lowEnergyMode = true;

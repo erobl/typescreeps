@@ -6,15 +6,9 @@ export class LowEnergyHarvester extends CreepJob {
     altjob: CreepJob;
     constructor(creep: Creep) {
         super(creep);
-        this.altjob = new Upgrader(this.creep);
-        /*
-        if(Math.random() > 0.5) {
-          var h = new Handyworker(this.creep);
-          h.target = <ConstructionSite> this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
-          this.altjob = h;
-        } else {
-        }
-        */
+        var h = new Handyworker(this.creep);
+        h.target = <ConstructionSite> this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+        this.altjob = h;
     }
 
     run() {

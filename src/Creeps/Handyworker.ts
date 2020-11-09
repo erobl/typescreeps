@@ -20,7 +20,7 @@ export class Handyworker extends Hauler {
 
                     if(this.target == undefined) {
                       var storages = this.creep.room.find<StructureStorage>(FIND_MY_STRUCTURES, {
-                        filter: (s) => s.structureType == STRUCTURE_STORAGE && s.store[RESOURCE_ENERGY] < 1e6
+                        filter: (s) => s.structureType == STRUCTURE_STORAGE && s.store[RESOURCE_ENERGY] < 100000
                       });
 
                       if (storages.length > 0) {
