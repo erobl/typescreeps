@@ -11,7 +11,7 @@ export class Handyworker extends Hauler {
         if(this.target == undefined) {
             if(this.creep.memory.working) {
                 if(this.creep.memory.job == "energyCarrier") {
-                    this.target = <StructureSpawn | StructureExtension | StructureTower> this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+                    this.target = <StructureSpawn | StructureExtension | StructureTower> this.creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
                     filter: (s) =>  (s.structureType == STRUCTURE_SPAWN     ||
                                     s.structureType == STRUCTURE_EXTENSION ||
                                     s.structureType == STRUCTURE_TOWER)    &&
@@ -28,14 +28,14 @@ export class Handyworker extends Hauler {
                       }
                     }
                 } else if(this.creep.memory.job == "repairer") {
-                    this.target = <Structure> this.creep.pos.findClosestByPath(FIND_STRUCTURES, {
+                    this.target = <Structure> this.creep.pos.findClosestByRange(FIND_STRUCTURES, {
                         filter: (s) => s.hits < s.hitsMax && s.structureType != STRUCTURE_WALL
                     });
                 } else if(this.creep.memory.job == "builder") {
-                    this.target = <ConstructionSite> this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+                    this.target = <ConstructionSite> this.creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
                 }
             } else {
-                this.target = <StructureContainer> this.creep.pos.findClosestByPath(FIND_STRUCTURES, 
+                this.target = <StructureContainer> this.creep.pos.findClosestByRange(FIND_STRUCTURES, 
                     {filter: (s) => s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] > this.creep.carryCapacity});
             }
         }

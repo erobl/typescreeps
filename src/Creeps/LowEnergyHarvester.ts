@@ -7,7 +7,7 @@ export class LowEnergyHarvester extends CreepJob {
     constructor(creep: Creep) {
         super(creep);
         var h = new Handyworker(this.creep);
-        h.target = <ConstructionSite> this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+        h.target = <ConstructionSite> this.creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
         this.altjob = h;
     }
 
@@ -28,7 +28,7 @@ export class LowEnergyHarvester extends CreepJob {
         }
 
         if(this.creep.memory.working) {
-          var structure = this.creep.pos.findClosestByPath(FIND_MY_STRUCTURES, {
+          var structure = this.creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
               filter: (s) =>  (s.structureType == 
                         (  STRUCTURE_SPAWN 
                         || STRUCTURE_EXTENSION 
@@ -44,7 +44,7 @@ export class LowEnergyHarvester extends CreepJob {
               this.altjob.run();
           }
         } else { 
-            var source = this.creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE)
+            var source = this.creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE)
             if(source != null && this.creep.harvest(source) == ERR_NOT_IN_RANGE) {
                 this.creep.moveTo(source);
             }
