@@ -1,9 +1,17 @@
 export class SpawnManager {
     spawn : StructureSpawn;
     containers: Structure[];
+    strategy: string;
     constructor(spawn : StructureSpawn, containers : Structure[]) {
         this.spawn = spawn;
         this.containers = containers;
+    
+        if(this.spawn.room.memory.strategy == undefined) {
+            this.spawn.room.memory.oldStrategy = "none";
+            this.spawn.room.memory.strategy = "init";
+        }
+
+        this.strategy = this.spawn.room.memory.strategy;
         if(this.spawn.memory.spawnQueue == undefined) {
             this.spawn.memory.spawnQueue = [];
         }
@@ -28,14 +36,62 @@ export class SpawnManager {
         }
     }
 
+    updateStrategy() {
+        var strategy = this.spawn.room.memory.strategy;
+        if(this.spawn.room.memory.strategy != this.spawn.room.memory.oldStrategy) {
+            this.spawn.room.memory.oldStrategy = strategy;
+
+            if(strategy == "init") {
+                this.spawn.memory.minimumNumber = {
+                    "lowenergyharvester": 4,
+                    "harvester" : 0,
+                    "handyworker": 0,
+                    "upgrader": 0,
+                    "claimer": 0,
+                    "longrangebuilder": 0
+                }; 
+            }
+            if(strategy == "building") {
+                var n_containers = Object.keys(this.spawn.room.memory.containerSource).length;
+                this.spawn.memory.minimumNumber = {
+                    "lowenergyharvester": 0,
+                    "harvester" : n_containers,
+                    "handyworker": 5,
+                    "upgrader": 0,
+                    "claimer": 0,
+                    "longrangebuilder": 0
+                }; 
+            }
+            if(strategy == "upgrading") {
+                var n_containers = Object.keys(this.spawn.room.memory.containerSource).length;
+                this.spawn.memory.minimumNumber = {
+                    "lowenergyharvester": 0,
+                    "harvester" : n_containers,
+                    "handyworker": 3,
+                    "upgrader": 2,
+                    "claimer": 0,
+                    "longrangebuilder": 0
+                }; 
+            }
+            
+            this.spawn.memory.spawnQueue = [];
+        }
+
+        new RoomVisual(this.spawn.room.name).text(strategy,2,1);
+    }
+
+
     run() {
         this.updateQueue()
 
-
         if(this.spawn.memory.spawnQueue.length > 0) {
-            var role = this.peekQueue();
-            var name = role + Game.time.toString();
-            var energy = this.getRoleBudget(role, this.spawn.memory.budget)
+          var role = this.peekQueue();
+          var energy = this.getRoleBudget(role, this.spawn.memory.budget)
+          console.log(role, energy)
+          if(this.spawn.room.energyAvailable >= energy) {
+            console.log("Trying to spawn")
+            var spawn_name = this.spawn.name;
+            var name = role + spawn_name + Game.time.toString();
             var body = this.getBody(role, energy)
             var memory = this.getMemory(role)
             var result = this.spawn.spawnCreep(body, name, {memory: memory});
@@ -44,10 +100,13 @@ export class SpawnManager {
                 this.popQueue();
 
                 this.postCreepCreation(role, name);
+            } else if (result != ERR_BUSY && result != ERR_NOT_ENOUGH_ENERGY) {
+                console.log(this.spawn.name + " error: " + result)
             }
-
+          }
         }
 
+        this.updateStrategy()
         this.updateStats()
     }
 
@@ -62,6 +121,12 @@ export class SpawnManager {
         }
         if(role == "longrangebuilder") {
             return 1000
+        }
+        if(role == "handyworker") {
+            if(defaultEnergy > 600) {
+                return 600
+            }
+            return defaultEnergy
         }
 
         return defaultEnergy
@@ -182,7 +247,6 @@ export class SpawnManager {
                 this.enqueueCreep(role)
             }
         }
-
         
         if(needsUpdate) {
             this.sortQueue()

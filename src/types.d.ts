@@ -5,6 +5,7 @@ interface CreepMemory {
   source_room: string;
   role: string;
   job?: string;
+  backupjob?: string;
   working?: boolean;
   dest_room?: string;
 }
@@ -14,6 +15,8 @@ interface RoomMemory {
   creepAllocation: { [id: string] : Id<StructureContainer> };
   containerSource: { [id: string] : Id<Source>};
   counter: number;
+  strategy: string;
+  oldStrategy: string;
 }
 
 interface SpawnMemory {

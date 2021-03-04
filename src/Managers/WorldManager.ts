@@ -17,6 +17,8 @@ export class WorldManager {
     }
 
     run() {
+        this.manageMemory()
+
         for (var rm of this.roomManagers) {
             rm.run();
         }
@@ -24,11 +26,9 @@ export class WorldManager {
         var cm = new CreepManager();
         cm.run();
 
-        if(Game.cpu.bucket > 9000) {
+        if(Game.cpu.bucket > 9999) {
             Game.cpu.generatePixel()
         }
-
-        this.manageMemory()
     }
 
     manageMemory() {

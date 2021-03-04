@@ -19,7 +19,7 @@ export class Harvester extends CreepJob {
         if(this.sourceId == undefined && this.containerId != undefined) {
             var container = Game.getObjectById(this.containerId);
             if(container != null) {
-                var source = container.pos.findClosestByRange(FIND_SOURCES);
+                var source = container.pos.findClosestByPath(FIND_SOURCES);
                 if(source != null) {
                     this.sourceId = source.id;
                     this.creep.room.memory.containerSource[this.containerId] = this.sourceId;
@@ -57,8 +57,12 @@ export class Harvester extends CreepJob {
           var target = Game.getObjectById(this.containerId);
           var source = Game.getObjectById(this.sourceId);
 
-          if(source != null && target != null && this.creep.harvest(source) == ERR_NOT_IN_RANGE) {
+          if(source != null && target != null && !this.creep.pos.isEqualTo(target)) {
               this.creep.moveTo(target);
+          }
+
+          if(source != null && target != null) {
+              this.creep.harvest(source)
           }
         }
     }

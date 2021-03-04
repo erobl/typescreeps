@@ -6,9 +6,13 @@ export class LowEnergyHarvester extends CreepJob {
     altjob: CreepJob;
     constructor(creep: Creep) {
         super(creep);
-        var h = new Handyworker(this.creep);
-        h.target = <ConstructionSite> this.creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
-        this.altjob = h;
+	if(this.creep.memory.backupjob == "builder") {
+	    var h = new Handyworker(this.creep);
+	    h.target = <ConstructionSite> this.creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+	    this.altjob = h;
+	} else {
+            this.altjob = new Upgrader(this.creep);
+	}
     }
 
     run() {
@@ -16,15 +20,17 @@ export class LowEnergyHarvester extends CreepJob {
             this.creep.memory.working = false;
         } else if (!this.creep.memory.working && this.creep.carry.energy == this.creep.carryCapacity) {
           this.creep.memory.working = true;
-          /*
           if(Math.random() > 0.5) {
+	    this.creep.memory.backupjob = "builder";
+            this.creep.say("Building!");
             var h = new Handyworker(this.creep);
             h.target = <ConstructionSite> this.creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
             this.altjob = h;
           } else {
+	    this.creep.memory.backupjob = "upgrader";
+            this.creep.say("Upgrading!");
             this.altjob = new Upgrader(this.creep);
           }
-          */
         }
 
         if(this.creep.memory.working) {
@@ -39,7 +45,11 @@ export class LowEnergyHarvester extends CreepJob {
           if(structure != null) {
               if(this.creep.transfer(structure, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                   this.creep.moveTo(structure);
-              }
+              } else {
+		  var directions = [TOP, TOP_RIGHT, RIGHT, BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT]
+		  var direction = directions[Math.floor(Math.random() * directions.length)];
+                  this.creep.move(direction);
+	      }
           } else {
               this.altjob.run();
           }

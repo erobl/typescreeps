@@ -41,6 +41,27 @@ export class Handyworker extends Hauler {
         }
     }
 
+    moveAdjacent(maxDistanceFromTarget: number) {
+      if(this.target != undefined) {
+          var directions = [[0,-1], [1,-1], [1,0], [1,1], [0,1], [-1,1], [-1,0], [-1,-1], [0,0]];
+          var dirnames = [TOP, TOP_RIGHT, RIGHT, BOTTOM_RIGHT, BOTTOM, BOTTOM_LEFT, LEFT, TOP_LEFT];
+          var dirindex = 0;
+          for(var i = 0; i < 20; i++) {
+              dirindex = Math.floor(Math.random() * directions.length);
+              var direction = directions[dirindex];
+              var newPos = this.creep.pos;
+              newPos.x = newPos.x + direction[0]
+              newPos.y = newPos.y + direction[1]
+              if(newPos.inRangeTo(this.target, maxDistanceFromTarget)) {
+                break;
+              }
+          }
+          if(dirindex < dirnames.length - 1) {
+              this.creep.move(dirnames[dirindex]);
+          }
+      }
+    }
+
     run() {
         this.switchState();
         this.findTarget();
@@ -49,21 +70,26 @@ export class Handyworker extends Hauler {
             if(this.target != undefined) {
                 if(this.creep.memory.job == "energyCarrier") {
                     if(this.creep.transfer(<Structure> this.target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(this.target);
+                        this.creep.moveTo(this.target, {maxRooms: 1});
                     }
                 } else if(this.creep.memory.job == "repairer") {
                     if(this.creep.repair(<Structure> this.target) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(this.target);
+                        this.creep.moveTo(this.target, {maxRooms: 1});
+                    } else {
+                        this.moveAdjacent(3);
                     }
                 } else if(this.creep.memory.job == "builder" || this.creep.memory.role == "lowenergyharvester") {
                     if(this.creep.build(<ConstructionSite> this.target) == ERR_NOT_IN_RANGE) {
-                        this.creep.moveTo(this.target)
+                        this.creep.moveTo(this.target, {maxRooms: 1})
+                    } else {
+                        this.moveAdjacent(3)
                     }
                 }
             }
         } else {
             if(this.target != undefined && this.creep.withdraw(<StructureContainer> this.target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                this.creep.moveTo(this.target);
+		// the creep shouldn't change rooms
+                this.creep.moveTo(this.target, {maxRooms: 1});
             }
         }
 
